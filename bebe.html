@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 19th Nailah!</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #d4a373; /* Cream Gold */
+            --bg-color: #fce4ec; /* Soft Pink */
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #4a4a4a;
+            --text-highlight: #b76e79; /* Dusty Pink */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background-image: radial-gradient(#f3d1dc 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hidden { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+        .show { opacity: 1; transform: translateY(0); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .title-h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--text-highlight);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .btn-start {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: none;
+            background: var(--text-highlight);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(183, 110, 121, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-start:hover { transform: scale(1.05); }
+
+        /* --- GLASS CARD STYLE --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        /* --- GALLERY GRID --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-frame:nth-child(even) { transform: rotate(2deg); }
+        .photo-frame:hover { transform: scale(1.05) rotate(0); z-index: 10; }
+
+        .photo-frame img {
+            width: 100%;
+            border-radius: 5px;
+            display: block;
+        }
+
+        /* --- LETTER SECTION --- */
+        .letter-content {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .highlight-text {
+            color: var(--text-highlight);
+            font-weight: 600;
+        }
+
+        /* --- MUSIC PLAYER --- */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="raisa.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-control" onclick="toggleMusic()">
+        <i class="fas fa-music" id="music-icon" style="color: var(--text-highlight);"></i>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="title-h1">Happy Birthday</h1>
+            <p class="subtitle">NAILAH RAHMA AZHARA</p>
+            <button class="btn-start" onclick="startCelebration()">Buka Kejutan 🎁</button>
+        </div>
+    </section>
+
+    <div id="main-content" style="display: none;">
+        
+        <div class="container">
+            <div class="glass-card hidden">
+                <h2 style="font-family: 'Dancing Script'; font-size: 2.5rem; color: var(--text-highlight);">Moments of Us</h2>
+                <p style="margin-bottom: 20px; font-size: 0.9rem;">Kumpulan foto gemes kamu & kita ✨</p>
+                
+                <div class="gallery-grid">
+                    <div class="photo-frame"><img src="" alt="Foto 1"></div>
+                    <div class="photo-frame"><img src="" alt="Foto 2"></div>
+                    <div class="photo-frame"><img src="" alt="Foto 3"></div>
+                </div>
+            </div>
+
+            <div class="glass-card hidden">
+                <h2 style="font-family: 'Dancing Script'; font-size: 2.5rem; margin-bottom: 20px;">Level 19 Unlocked! 🔓</h2>
+                <div class="letter-content">
+                    <p><strong>To My Dearest Nailah,</strong></p>
+                    <br>
+                    <p>Selamat ulang tahun yang ke-19 cantikkuu 🌷 , <span class="highlight-text">Nailah Rahma Azhara</span>! 🎂</p>
+                    <p>Cie, setahun lagi kepala dua, nih. Tenang aja, meski umur nambah, lucunya kamu gak boleh berkurang ya (karena itu aset, haha). Maaf yaa sayang ucapannyasederhana, soalnya kalau terlalu mewah nanti kalah saing sama cantiknya kamu hari ini. 😋</p>
+                    <br>
+                    <p>Tapi serius... Gak kerasa ya kamu udah di fase <em>last teen year</em> sekarang. Aku cuma mau bilang, terima kasih sudah lahir ke dunia dan tumbuh jadi wanita yang sekeren ini. Melihat kamu senyum adalah bagian favorit dari hariku.</p>
+                    <br>
+                    <p>Semoga di angka 19 ini, semesta makin baik sama kamu. Semoga kamu makin bahagia, menjadi wanita yang lebih dewasa, makin sayang sama diri kamu dan tentunya ke aku juga wkwk, semoga hal baik selalu menyertai kamuu sayang dan banyakin senyum karena kamu cantik manis .</p>
+                    <br>
+                    <p>Ingat, di hari baik atau buruk, <strong>I’ll always be here holding your hand.</strong></p>
+                    <br>
+                    <p style="text-align: center; font-family: 'Dancing Script'; font-size: 1.5rem; color: var(--text-highlight);">I love you to the moon and back! ❤️</p>
+                </div>
+            </div>
+
+            <footer style="margin-top: 50px; font-size: 0.8rem; color: #aaa;">
+                <p>Made with ❤️ specially for Nailah</p>
+                <br><br>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Fungsi saat tombol Buka Kejutan diklik
+        function startCelebration() {
+            document.querySelector('.hero').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            
+            // Play Musik
+            var audio = document.getElementById("bg-music");
+            audio.play();
+            document.getElementById("music-icon").classList.remove("fa-music");
+            document.getElementById("music-icon").classList.add("fa-pause");
+
+            // Efek Confetti (Kertas warna warni)
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            // Scroll ke konten
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            revealOnScroll();
+        }
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Kontrol Musik
+        function toggleMusic() {
+            var audio = document.getElementById("bg-music");
+            var icon = document.getElementById("music-icon");
+            if (audio.paused) {
+                audio.play();
+                icon.classList.remove("fa-music");
+                icon.classList.add("fa-pause");
+            } else {
+                audio.pause();
+                icon.classList.remove("fa-pause");
+                icon.classList.add("fa-music");
+            }
+        }
+
+        // Animasi Scroll (Fade In)
+        window.addEventListener('scroll', revealOnScroll);
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.hidden');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
